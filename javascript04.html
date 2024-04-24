@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>자바스크립트 04</title>
+</head>
+<body>
+    <h1>자바스크립트의 객체</h1>
+    <p>자바스크립트는 내장 객체(BOM[브라우저객체], DOM[문서객체]), 사용자 정의 객체로 구분</p>
+    <div id="res1"></div>
+    <div id="res2"></div>
+    <div id="res3"></div>
+    <div id="res4"></div>
+    
+    <hr>
+    <script>
+        var man1 = {name:"김기태",style:"미남",point:100};
+        man1.nick = "김미남";   //항목 추가
+        man1.style = "신사";    //항목 값 변경
+        //Constructor : 생성자를 활용한 객체 생성
+        function People(no,nmae,age,style,target){
+            this.no = no;
+            this.name = name;
+            this.age = age;
+            this.style = style;
+            print = function(){
+                var res = document.getElementById(target);
+                res.innerHTML = "<ul>";
+                res.innerHTML = res.innerHTML + "<li>"+ this.no+"</li>";
+                res.innerHTML = res.innerHTML + "<li>"+ this.name+"</li>";
+                res.innerHTML = res.innerHTML + "<li>"+ this.age+"</li>";
+                res.innerHTML = res.innerHTML + "<li>"+ this.style+"</li>";
+                res.innerHTML = "</ul>";
+            };
+            
+        }
+
+        var st1 = new People(1, "이종우", 22, "잘생김주의","res1");
+        var st2 = new People(2, "이종욱", 23, "못생김주의","res2");
+        var st3 = new People(3, "이종원", 24, "느끼함","res3");
+        var st4 = new People(4, "이종훈", 25, "노래잘함","res4");
+        
+        st1.print();
+        st1.print();
+        st1.print();
+        st1.print();
+        
+        st1.family = "전주이씨";
+        st2.family = ""
+    </script>
+    <div id="res5"></div>
+</body>
+</html>

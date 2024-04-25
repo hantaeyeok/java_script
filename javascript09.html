@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>자바 스크립트 09</title>
+</head>
+<body>
+    <h1>BOM(Brower Object Model)</h1>
+    <p>브라우저의 제어를 위한 내장 객체에는 window(창), screen(화면), location(url), history(방문페이지정보), navigator(브라우저엔진), document</p>
+    <hr>
+    <button id="btn1" onclick="open1('http://www.google.com')">새창으로</button>
+    <button id="btn2">닫기</button>
+    <button id="btn2">인쇄하기</button>
+    <hr>
+    <h2>자식창과 부모창의 데이터 전달과 제어</h2>
+    <div id="form1">
+        <form name="aFrmName">
+            <input type="text" name="aname" id="aName" value="홍길동"><br><br>
+            <input type="button" value="팝업창 열기" onclick="openChild()">&nbsp;
+            <input type="button" value="자식창 값 설정" onclick="setChildText">
+        </form>
+    </div>
+    <script>
+        var btn3 = document.getElementById("btn3");
+        var btn2 = document.getElementById("btn2");
+        var win1;
+        function open1(url){
+        var win_option = "width=400, height=300, top=100, left=200,";
+        win_option += "scrollbar =no, menubar =no, status =no, toolbar =no, loation =no"
+        win1 =window.open(url,"win1",win_option);
+        }
+        btn2.addEventListener("click",function(){
+            window.close();
+        })
+        btn3.addEventListener("click",function(){
+            window.print();
+        })
+    </script>
+    <script>
+        var childWindow;
+        var aName = "";
+        function openChild(){
+            aName = document.getElementById("aname").value;
+            var windowFeatures = "width=500, height=300, top=200, left=200, popup";
+            childWindow = window.open("child.html?data="+aName, "myPopup", windowFeatures);
+        }
+        function setChildText(){
+            var aValue = document.getElementById("aName").value;
+            childWindow.document.getElementById("childName").value = aValue;
+        }
+    </script>
+</body>
+</html>

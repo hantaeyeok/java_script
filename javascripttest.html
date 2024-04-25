@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>javascriptTest</title>
+    <style>
+        
+        #Form {border: 1px solid #333; } 
+        .div_lenth {width: 1200px; height: auto; font-weight: 700;}
+        .form_div {clear: both; margin: auto; display: inline-block; margin: 20px; width: 40%; height: auto;}
+        input {margin: auto 10px;}
+        .form_submit {width: 50%; height: auto; margin: auto;}
+    </style>
+</head>
+<body>
+    <h1>java_script_test01</h1>
+    <hr>
+    <p>아래 화면과 같은 페이지를 html과 css를 이용하여 작성하고,
+        javascript 를 이용하여 적용하기 버튼 클릭시
+        각 input에 작성 및 체크된 값을 적용한 결과물을 아래 그림과 같이
+        출력해야한다.
+    </p>
+    <hr>
+    <div class="From">
+        <form id="test01">
+            <div class="div_lenth">
+                <div class="form_div"> 너비 : <input type="text" name="width"> px </div>
+                <div class="form_div"> 높이 : <input type="text" name="height"> px </div>
+            </div>
+
+            <div class="div_lenth">
+                <div class="form_div"> 
+                     글자크기 : <input type="text" name="font_size"> px 
+                </div>
+                <div class="form_div"> 
+                    너비 : 
+                    보통<input type="radio" name="width_font" value="font_normal">
+                    굵게<input type="radio" name="width_font" value="font_bold">
+                </div>
+            </div>
+            <div class="div_lenth">
+                <div class="form_div"> 글자색 : <input type="text" name="font_color"> </div>
+                <div class="form_div"> 배경색 : <input type="text" name="background_color"> </div>
+            </div>
+            <div class="div_lenth">
+                <div class="form_div"> 
+                    가로정렬 :
+                    왼쪽<input type="radio" name="width_sort" value="left_sort">
+                    가운데<input type="radio" name="width_sort" value="center_sort">
+                    오른쪽<input type="radio" name="width_sort" value="right_sort">
+                </div>
+            </div>
+            <div class="div_lenth">
+                <div class="form_div"> 
+                    세로정렬 : 
+                    위<input type="radio" name="lenth_sort" value="top_sort">
+                    가운데<input type="radio" name="lenth_sort" value="middle_sort">
+                    아래<input type="radio" name="lenth_sort" value="bottom_sort">
+            </div>
+            <div class="div_lenth">
+                <div class="form_div"> 출력 문자열 : <input type="out_text" name="out_text"></div>
+            </div>
+                <div class="div_lenth">
+                    <div class="form_submit"><input type="submit" value="submit"></div>
+             </div>
+            </div>
+        </form>
+    </div>    
+    <div class="reuslt" id="reuslt"></div>  
+</body>
+<script>
+    document.getElementById("submit").addEventListener("click",function(){
+
+        var width = form.name.getElementById("width").value+"px";
+        var height = form.name.getElementById("height").value+"px";
+        var font_size = form.name.getElementById("font_size").value+"px";
+        var width_font = form.name.getElementById("width_font").value;
+        var font_color = "#"+form.name.getElementById("font_color").value;
+        var background_color = "#"+form.name.getElementById("background_color").value;
+        var width_sort = form.name.getElementById("width_sort").value;
+        var lenth_sort = form.name.getElementById("lenth_sort").value;
+        var out_text = form.name.getElementById("out_text").value;
+
+        var result = document.getElementById("result");
+            result.innerHTML = 
+          
+            
+
+        
+    });
+</script>
+
+
+
+</html>

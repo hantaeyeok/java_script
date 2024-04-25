@@ -6,8 +6,9 @@
     <title>자바스크립트 03</title>
     <style>
         * {margin: 0; padding: 0;}
-        body {width: 100%; overflow-x: hidden;}
+        body {width: 100%; overflow-x: hidden; text-align: center;}
         a {text-decoration: none;}
+        fieldset {text-align: center;}
     </style>
 </head>
 <body>
@@ -69,5 +70,30 @@
             }
         }
 
+    </script>
+    <hr>
+    <script>
+        var x=200,y=300,z=100;
+        var result = document.getElementById("result");
+        
+        var str;
+        //대입연산자
+        str = "<h2>대입 연산자</h2>"
+        x+=3;
+        str =str + "<br>x+=3 결과 : " + x;
+        x-=4;
+        str =str + "<br>x+=3 결과 : " + x;
+        x*=2;
+        str =str + "<br>x+=3 결과 : " + x;
+        x/=3;
+        str =str + "<br>x+=3 결과 : " + x;
+        x%=3;
+        str =str + "<br>x+=3 결과 : " + x;
+        x=200; y=200;
+
+        //증감연산자
+        x++;
+
+        
     </script>
 </html>

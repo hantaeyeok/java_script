@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="res1"></div>
+    <div id="res2"></div>
+    <div id="res3"></div>
+    <div id="res4"></div>
+
+    <script>
+        function fnc1(){
+            document.write("<br>fnc1 : 매개변수x,리턴x<br>");
+        }
+        function fnc2(x){
+            document.write("<br>fnc1 : 매개변수0,리턴x<br>");
+        }
+        function fnc3(){
+            return "<br>fnc3 : 매개변수x,리턴0<br>";
+        }
+        function fnc4(x){
+            return x+"<br>fnc4 : 매개변수0,리턴0<br>";
+        }
+        
+        //함수의 호출과 사용
+        var res4 = fnc4("김기태");
+        var res3 = fnc3();
+        document.write(res4);
+        document.write(res3);
+        fnc2("김이태");
+        fnc1();
+    </script>
+</body>
+</html>

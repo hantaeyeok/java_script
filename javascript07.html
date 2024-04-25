@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>자바스크립트 07</title>
+</head>
+<body>
+    <h1>반복문</h1>
+    <p>while,do while,for,for in,for of</p>
+    <hr>
+    <script>
+        var im =[["1.jpg","2.jpg","3.jpg","4.jpg","5.jpg"], ["민지","하니","다니엘","해린","혜인"]];
+        var img = document.getElementsByClassName("thumb");
+        for(var i=0;i<img.length;i++){
+            img[i].src = im[0][i];
+            img[i].alt = im[1][i];
+            img[i].title = im[1][i];
+        }
+
+        var imges = [img1, im2, im3, img4, img5];
+        var tb = document.getElementsByClassName("tb");
+
+        for(var j=0;j<imges.length;j++){
+            tb[j].src = imges[j].src;
+            tb[j].alt = imges[j].alt;
+            tb[j].title = imges[j].title;
+        }
+    </script>
+</body>
+</html>

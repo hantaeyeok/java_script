@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div{width: 100px; height: auto; clear: both;}
+    </style>
+</head>
+<body>
+    <h1>데이터형 객체</h1>
+    <p>자바스크립트의 데이터형 객체는 데이터를 저장하거나 변혼, 변형, 전달을 목적으로 만든 내장 객체를 의미
+        그 데이터가 어떠한 타입의 데이터냐에 따라 사용하는 객체가 달라짐
+    </p>
+    <p>Number, Math, Date, String, Array, Audio, Video, file, 등이있으며, 정적객체도 있고
+        동적객체(new 키워드로 생성)도 있고, 혼합형태도 있다.
+    </p>
+
+    <script>
+        document.write("<h3>Number.메소드() 형태의 정적 메소드</h3>");
+        document.write("<p>b/d : "+(b/d)+":"+Number.isInteger(b/d)+"</p>");
+        document.write("<p>a/d : "+(a/d)+":"+Number.isNaN(a/d)+"</p>");
+        document.write("<p>c/d : "+(c/d)+"</p>");
+        document.write("<p>d/c : "+(d/c)+":"+Number.isFinite(d/c)+"</p>");
+        document.write("<p>e/d : "+(e/d)+":"+Number.isNaN(e/d)+"</p>");
+        g = Number.parseInt(b);
+        document.write("<p></p>");
+    
+
+        //Math 객체 관련 메소드 - 반드시 앞에 Math가 붙어야함.
+
+
+        date1 = new Date();
+        document.write("<h3>Date 객체 관련 메소드</h3>")
+        document.write("<p>오늘날짜:"+date1+"</p>")
+     
+        //타이머 객체
+        function abc(){}
+            
+        </script>
+        <div id="cal"></div>
+        <div id="clock"></div>
+        <div id="status"></div>
+        <button type="button" id="btn1">멈춤</button>
+        <script>
+        function abc(){
+            date2 = new Date();
+            var today = ""+ date2.getFullYear() + "-"+ (date2.getMonth()+1)+ "-"+(date2.getDay()+1); 
+            var now = ""+date2.getHours()+":"+date2.getMinutes()+gate2.getSeconds();
+            var cal = document.getElementById("cal");
+            var cal = document.getElementById("clock");
+            cal.innerHTML = "<p>오늘날짜 : "+ today+"</p>"
+            clock.innerHTML = "<p>현재 시각 : "+now+"</p>";
+        }
+        var intv = setInterval(function(){abc();},1000);
+        var btn1 = document.getElementById("btn1");
+        var sw = true;
+        btn1.addEventListener("click",function(){
+            if(sw){
+                clearInterval(intv);
+                btn1.innerText = "출발";
+            } else {
+                intv = setInterval(function(){abc();},1000);
+                btn1.innerText = "멈춤";
+            }
+            sw = !sw;
+
+
+
+        });
+
+        function bcd(){
+            document.getElementById("status").innerHTML = "타임아웃";
+        }
+        setTimeout(function(){bcd();}, 2000);
+        </script>
+</body>
+</html>

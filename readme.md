@@ -81,6 +81,14 @@
 
 <br><hr><br>
 
+![자바스크립트치트시트](Javascript_Cheat_Sheet_1.jpg)
+
+![자바스크립트치트시트](cheatsheet1.png)
+
+[Javascript Cheat Sheet 바로가기](https://overapi.com/javascript "javascript cheat sheet")
+
+<br><hr><br>
+
 # 2. 자바스크립트의 사용자 정의 변수/함수/배열/객체
 
 - 변수(Variable) : 데이터를 저장할 저장소의 이름으로 변수라고 하는 것은 언제든지 그 값이 유동적으로 변할 수 있기 때문입니다.
@@ -2936,28 +2944,28 @@ if( is_device ) {
 |-----------|----------------------------------------------|
 | document.anchors | name 속성을 가지는 <a>요소를 모두 반환 |
 | document.applets | applet 요소를 모두 반환함. (HTML5에서 제외됨) |
-| document.body | <body>요소를 반환 |
+| document.body | &lt;body&gt;요소를 반환 |
 | document.cookie | HTML 문서의 쿠키(cookie)를 반환 |
 | document.domain | HTML 문서가 위치한 서버의 도메인 네임(domain name)을 반환 |
-| document.forms | <form>요소를 모두 반환 |
-| document.images | <img>요소를 모두 반환 |
-| document.links | href 속성을 가지는 <area>요소와 <a>요소를 모두 반환 |
+| document.forms | &lt;form&gt;요소를 모두 반환 |
+| document.images | &lt;img&gt;요소를 모두 반환 |
+| document.links | href 속성을 가지는 &lt;area&gt;요소와 &lt;a&gt;요소를 모두 반환 |
 | document.referrer | 링크(linking)되어 있는 문서의 URI를 반환 |
-| document.title | <title>요소를 반환 |
+| document.title | &lt;title&gt;요소를 반환 |
 | document.URL | HTML 문서의 완전한 URL 주소를 반환 |
 | document.baseURI | HTML 문서의 절대 URI(absolute base URI)를 반환 |
 | document.doctype | HTML 문서의 문서 타입(doctype)을 반환 |
-| document.documentElement | <html>요소를 반환 |
+| document.documentElement | &lt;html&gt;요소를 반환 |
 | document.documentMode | 웹 브라우저가 사용하고 있는 모드를 반환 |
 | document.documentURI | HTML 문서의 URI를 반환 |
 | document.domConfig | HTML DOM 설정을 반환 (더는 사용하지 않음) | 
-| document.embeds | <embed>요소를 모두 반환 |
-| document.head | <head>요소를 반환 |
+| document.embeds | &lt;embed&gt;요소를 모두 반환 |
+| document.head | &lt;head&gt;요소를 반환 |
 | document.implementation | HTML DOM 구현(implementation)을 반환 |
 | document.inputEncoding | HTML 문서의 문자 인코딩(character set) 형식을 반환 |
 | document.lastModified | HTML 문서의 마지막 갱신 날짜 및 시간을 반환 |
 | document.readyState HTML | 문서의 로딩 상태(loading status)를 반환 |
-| document.scripts | <script>요소를 모두 반환 |
+| document.scripts | &lt;script&gt;요소를 모두 반환 |
 | document.strictErrorChecking | 오류의 강제 검사 여부를 반환 |
 
 <br><br>
@@ -3148,35 +3156,840 @@ font-size:10px; position:absolute; top:3px; left:0px; }
 
 ## 12-2. form 객체
 
+- form 요소는 form 요소 자체와 그 안에 존재하는 부속 요소인 여러 control 요소를 포함한다.
+
 <br>
 
-### 12-2-1. form 객체의 속성과 메소드
+### 12-2-1. form 객체의 선택 또는 탐색
+
+#### 폼과 요소 탐색하기
+
+```javascript
+//폼의 접근
+document.forms.폼이름 //form 태그의 name 속성으로 기재된 폼이름으로 접근
+document.forms[인덱스]; //현재 문서의 form 태그의 인덱스로 접근
+```
+
+<br>
+
+```javascript
+//폼 요소의 접근
+document.폼이름.컨트롤요소이름 //해당 폼 컨트롤 요소에 기재된 name 속성의 값인 이름으로 접근
+document.getElementById("컨트롤요소ID"); //해당 폼 컨트롤 요소에 기재된 id 속성의 값인 아이디로 접근
+```
 
 <br>
 
 ### 12-2-2. form 객체의 예시 코드
 
-<br><br>
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>회원가입</title>
+    <style>
+@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css");
+@import url("https://fonts.googleapis.com/css2?family=Nanum+Gothic&family=Nanum+Pen+Script&family=Noto+Sans+KR:wght@100..900&family=Noto+Serif+KR");
+* {  box-sizing: border-box; }
+body {  font-family: "Montserrat", sans-serif;  margin: 0;  padding: 0; }
+.wrapper {  width: 100%;  height: 100vh;  display: flex;  justify-content: center;
+  align-items: center;  background: #ebecf0;  overflow: hidden; }
+.container {  border-radius: 10px;  box-shadow: -5px -5px 10px #fff, 5px 5px 10px #babebc;
+  position: absolute;  width: 768px;  min-height: 480px;  overflow: hidden; }
+form {  background: #ebecf0;  display: flex;  flex-direction: column;
+  padding: 0 50px;  height: 100%;  justify-content: center;  align-items: center; }
+form input {  background: #eee;  padding: 16px;  margin: 8px 0;  width: 85%;
+  border: 0;  outline: none;  border-radius: 20px;
+  box-shadow: inset 7px 2px 10px #babebc, inset -5px -5px 12px #fff; }
+button {  border-radius: 20px;  border: none;  outline: none;  font-size: 12px;
+  font-weight: bold;  padding: 15px 45px;  margin: 14px;  letter-spacing: 1px;
+  text-transform: uppercase;  cursor: pointer;  transition: transform 80ms ease-in; }
+.form_btn {  box-shadow: -5px -5px 10px #fff, 5px 5px 8px #babebc; }
+.form_btn:active { box-shadow: inset 1px 1px 2px #babebc, inset -1px -1px 2px #fff;}
+.overlay_btn {  background-color: #ff4b2b;  color: #fff;
+  box-shadow: -5px -5px 10px #ff6b3f, 5px 5px 8px #bf4b2b; }
+.sign-in-container {  position: absolute;  left: 0;  width: 50%;
+  height: 100%;  transition: all 0.5s; }
+.sign-up-container { position: absolute;  left: 0;  width: 50%;  height: 100%;
+  opacity: 0;  transition: all 0.5s; }
+.overlay-left {  display: flex;  flex-direction: column;  padding: 0 50px;  
+  justify-content: center;  align-items: center;  position: absolute;  right: 0;  
+  width: 50%;  height: 100%; opacity: 0;  background-color: #ff4b2b;  color: #fff;
+  transition: all 0.5s;
+}
+.overlay-right {  display: flex;  flex-direction: column;  padding: 0 50px;
+  justify-content: center;  align-items: center;  position: absolute;
+  right: 0;  width: 50%;  height: 100%;  background-color: #ff4b2b;
+  color: #fff;  transition: all 0.5s; }
+.container.right-panel-active .sign-in-container {  transform: translateX(100%);  opacity: 0; }
+.container.right-panel-active .sign-up-container {  transform: translateX(100%);  opacity: 1;
+  z-index: 2; }
+.container.right-panel-active .overlay-right { transform: translateX(-100%);  opacity: 0;}
+.container.right-panel-active .overlay-left {   transform: translateX(-100%);
+  opacity: 1;  z-index: 2; }
+.social-links {  margin: 20px 0; }
+form h1 {  font-weight: bold;  margin: 0;  color: #000; }
 
-## 12-3. file 객체
+p {  font-size: 16px;  font-weight: bold;  letter-spacing: 0.5px;  margin: 20px 0 30px; }
+span {  font-size: 12px;  color: #000;  letter-spacing: 0.5px;  margin-bottom: 10px; }
+.social-links div {  width: 40px;  height: 40px;  display: inline-flex;
+  justify-content: center;  align-items: center;  margin: 0 5px;
+  border-radius: 50%;  box-shadow: -5px -5px 10px #fff, 5px 5px 8px #babebc;
+  cursor: pointer;
+}
+.social-links a {  color: #000; }
+.social-links div:active {  box-shadow: inset 1px 1px 2px #babebc, inset -1px -1px 2px #fff; }    
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <div class="container">
+          <div class="sign-up-container">
+            <form>
+              <h1>회원 가입</h1>
+              <div class="social-links">
+                <div>
+                  <a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+                </div>
+                <div>
+                  <a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+                </div>
+                <div>
+                  <a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
+                </div>
+              </div>
+              <span>이메일과 비밀번호를 입력하고, 회원가입하시기 바랍니다.</span>
+              <input type="text" placeholder="Name">
+              <input type="email" placeholder="Email">
+              <input type="password" placeholder="Password">
+              <button class="form_btn">회원가입</button>
+            </form>
+          </div>
+          <div class="sign-in-container">
+            <form>
+              <h1>Sign In</h1>
+              <div class="social-links">
+                <div>
+                  <a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+                </div>
+                <div>
+                  <a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+                </div>
+                <div>
+                  <a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
+                </div>
+              </div>
+              <span>or use your account</span>
+              <input type="email" placeholder="Email">
+              <input type="password" placeholder="Password">
+              <button class="form_btn">Sign In</button>
+            </form>
+          </div>
+          <div class="overlay-container">
+            <div class="overlay-left">
+              <h1>로그인하기</h1>
+              <p>로그인하고, 회원 혜택을 즐겨보세요~!</p>
+              <button id="signIn" class="overlay_btn">로그인</button>
+            </div>
+            <div class="overlay-right">
+              <h1>회원가입하기</h1>
+              <p>회원가입하고, 다같이 여행을 같이 가자~! 가산투어~!</p>
+              <button id="signUp" class="overlay_btn">회원가입</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <script>
+        const signUpBtn = document.getElementById("signUp");
+        const signInBtn = document.getElementById("signIn");
+        const container = document.querySelector(".container");
 
-- 
-
-<br>
-
-## 12-3-1. file 객체의 속성과 메소드
-
-<br>
-
-## 12-3. file 객체의 예시 코드
+        signUpBtn.addEventListener("click", () => {
+        container.classList.add("right-panel-active");
+        });
+        signInBtn.addEventListener("click", () => {
+        container.classList.remove("right-panel-active");
+        });  
+      </script>
+</body>
+</html>
+```
 
 <br><hr><br>
 
 # 13. 이벤트와 예외처리
+
+## 13-1. 이벤트
+
+- 웹 브라우저에서 사용자가 어떠한 행위를 할 경우 발생하는 사건을 이벤트라고 부르며, 이벤트 처리를 통하여 상호작용(Interaction)을 구현할 수 있습니다.
+- 이벤트의 방식에는 인라인 이벤트와 이벤트리스너를 활용하는 두 가지 방식이 있습니다.
+- 함수에 의하여 이벤트를 전달하여 처리하는 인라인 이벤트와 같은 경우를 이벤트핸들러(Event Handler)라고 합니다.
+- 이벤트를 처리할 대상에 이벤트 객체를 생성하는 addEventListener 메소드를 활용하게 된다면, 이를 이벤트리스너(Event Listener)라고 합니다.
+- 그러므로 이벤트 처리를 위해서는 이벤트가 발생하게 되는 객체를 이벤트 발생자라고 하고, 이벤트에 의해 처리대상이 되는 것을 타겟(target)이라고 합니다.
+- 이벤트에는 이벤트 타입, 이벤트 핸들러 함수, 옵션 등으로 구성됩니다.
+
+<br><br>
+
+### 13-1-1. 이벤트의 종류와 타입
+
+| 이벤트 종류 | 이벤트 타입 | 설명 |
+|--------------|------------------------------|---------------------------------------------------------------------|
+| 마우스 이벤트 | click | 마우스 왼쪽 버튼으로 특정 대상을 클릭한 경우 발생 |
+|  | dblclick | 마우스 왼쪽 버튼으로 두 번 연이어 클릭한 경우 발생 |
+|  | mouseover/hover/mouseenter | 특정 대상에 마우스 포인터가 올라올 경우 발생 |
+|  | mouseout/mouseleave | 특정 대상에서 마우스 포인터가 떠나는 경우 발생 |
+|  | mousedown | 마우스 왼쪽 버튼을 누르고 있으면 발생 |
+|  | mouseup | 마우스 왼쪽 버튼을 떼었을 때 발생 |
+|  | mousemove | 특정 대상에서 마우스 포인터가 움직이는 경우 발생 |
+|  | contextmenu | 마우스 오른쪽 버튼을 눌렀을 경우 발생 |
+|  | drag | 마우스로 특정 객체를 끌 경우 발생 |
+|  | drop | 마우스로 특정 객체를 집었다가 놓을 경우 발생 |
+|  | scroll(wheel=mousewheel) | 마우스 가운데 존재하는 휠을 돌릴 경우 발생 |
+| 키보드 이벤트 | keypress | 키보드에서 특정 키를 눌렀다 뗄 경우 발생 |
+|  | keydown | 키보드에서 특정 키를 누르고 있을 경우 발생 |
+|  | keyup | 키보드 특정 키에서 손가락을 떼었을 경우 발생 |
+| 폼 관련 이벤트 | focus | 해당 컨트롤 요소에 커서가 오면 발생 |
+|  | blur | 해당 컨트롤 요소에서 커서가 떠나면 발생 |
+|  | change | select 요소와 같은 선택 요소에서 특정 값으로 값을 변경하면 발생 |
+|  | submit | 폼 데이터가 전송될 때 발생 |
+|  | reset | 폼 컨트롤 요소 중 reset 버튼을 누르면 발생 |
+|  | select | 선택 요소 중에서 특정 값을 선택할 때 발생 |
+| 기타 이벤트 | load | 창이 로딩이 될 때 발생 |
+|  | abort | 창이 나타나면 발생 |
+|  | unload | 창이 사라지면 발생 |
+|  | resize | 창의 크기가 변경될 때 발생 |
+|  | scroll | 창의 스크롤바를 움직일 때 발생 |
+
+<br><br>
+
+### 13-1-2. 이벤트의 기본 문법
+
+#### 이벤트리스너의 경우
+
+```javascript
+document.getElementById("아이디").addEventListener("이벤트타입", function () {
+    //이벤트 처리 내용
+    ......
+});
+```
+
+<br>
+
+#### 인라인 이벤트의 경우
+
+```html
+<span onclick="함수명()">이벤트핸들러</span>
+<script>
+function 함수명() { ... }    
+</script>    
+```
+
+<br><br>
+
+## 13-2. 예외처리
+
+### 13-2-1. 예외처리 기본 문법
+
+```javascript
+try {
+    //예외처리가 필요한 코드
+} catch (e){
+    //예외가 발생된 사유의 메시지
+} finally {
+    //예외 유무와 관계없이 무조건 실행되어야 할 코드
+}
+```
+
+<br>
+
+### 13-2-2. 예외처리 예시 코드
+
+```javascript
+try {
+  console.log('try');
+  new Array(-1); // RangeError: Invalid array length
+} catch (e) {
+  console.log('catch');
+} finally {
+  console.log('finally');
+}
+```
 
 <br><hr><br>
 
 # 14. 웹 애플리케이션에 자바스크립트 적용하기
 
 <br><br>
+
+## 14-1. 폼 UI 도구 만들기
+
+![DOM 객체를 제어하여 폼 UI 도구 만들기](ui1.png)
+
+```comment
+박스의 너비, 높이, 글자크기, 글자 굵기, 글자색, 배경색, 정렬 방식, 출력할 문자열 등을 입력하거나 선택하고, 적용하기를 누르면, 아래 캔버스에 출력이 되고, 이미지 저장 버튼을 누르면, 해당 캔버스의 내용이 'test.png'로 저장될 수 있도록 하시오.
+```
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM 객체의 제어</title>
+    <style>
+    * { margin: 0; padding: 0; }
+    body { width:100%; overflow-x:hidden; color:#000; }
+    .title { padding-top: 2rem; text-align: center; padding-bottom: 0.5rem; }
+    .table { width: 960px; margin: 10px auto; }
+    #btn1, #imgFile { display:block; width: 150px; text-align: center; line-height: 36px; 
+    margin: 8px auto; clear:both; font-size:16px; font-weight:bold; }
+    .wrap { clear:both; width: 100%; height:auto; min-height:100px; margin-top: 30px; 
+        display: flex; justify-content: center;   align-items: center;  }
+    #result { width:200px; height:400px; background-color:yellow; color:red; 
+    font-size:20px; text-align:right; font-weight:bold; 
+    border:3px solid #000;  display: flex; justify-content:right;  align-items:center; }
+    .btn_wrap { clear:both; width: 960px; margin:0 auto; padding-top: 30px; padding-bottom: 100px; }
+    </style>
+</head>
+<body>
+    <h1 class="title">DOM 객체의 제어</h1>
+    <hr>
+    <form name="ui">
+        <table class="table" cellspacing="25">
+            <tbody>
+                <tr>
+                    <th>너비 : </th>
+                    <td><input type="text" size="9" name="w" id="w" value="200">px</td>
+                    <th>높이 : </th>
+                    <td><input type="text" size="9" name="h" id="h" value="400">px</td>
+                </tr>
+                <tr>
+                    <th>글자크기 : </th>
+                    <td><input type="text" size="9" name="font_size" id="font_size" value="20">px</td>
+                    <th>굵기 : </th>
+                    <td>보통 
+                        <input type="radio" name="font_weight" id="font_weight1" value="normal"> &nbsp; &nbsp;
+                        굵게 
+                        <input type="radio" name="font_weight" id="font_weight2" value="bold" checked>
+                    </td>
+                </tr>
+                <tr>
+                    <th>글자색 : </th>
+                    <td><input type="text" size="9" name="color" id="color" value="red"></td>
+                    <th>배경색 : </th>
+                    <td><input type="text" size="9" name="bg_color" id="bg_color" value="yellow"></td>
+                </tr>
+                <tr>
+                    <th>가로정렬 : </th>
+                    <td colspan="3">왼쪽 
+                        <input type="radio" name="h_align" id="h_align1" value="left"> &nbsp; &nbsp;
+                        가운데 
+                        <input type="radio" name="h_align" id="h_align2" value="center"> &nbsp; &nbsp;
+                        오른쪽 
+                        <input type="radio" name="h_align" id="h_align3" value="right" checked>
+                    </td>
+                </tr>
+                <tr>
+                    <th>세로정렬 : </th>
+                    <td colspan="3">위 
+                        <input type="radio" name="v_align" id="v_align1" value="flex-start"> &nbsp; &nbsp;
+                        가운데 
+                        <input type="radio" name="v_align" id="v_align2" value="center" checked> &nbsp; &nbsp;
+                        아래 
+                        <input type="radio" name="v_align" id="v_align3" value="flex-end">
+                    </td>            
+                </tr>
+                <tr>
+                    <th>출력 문자열 : </th>
+                    <td colspan="3">
+                        <input type="text" size="80" maxlength="40" name="txt" id="txt" value="Hello World">
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="4"><button type="button" id="btn1">적용하기</button></td>
+                </tr>
+            </tbody>
+        </table>
+    </form>
+    <div class="wrap" id="canvas">
+        <div id="result">
+            Hello World
+        </div>
+    </div>
+    <script>
+    var txt = document.getElementById("txt");
+    var result = document.getElementById("result");    
+    function fnc1() {
+        result.innerHTML = txt.value;
+        result.style.width = document.getElementById("w").value + "px";
+        result.style.height = document.getElementById("h").value + "px";
+        result.style.fontSize = document.getElementById("font_size").value+"px";
+        result.style.fontWeight = document.ui.font_weight.value;
+        result.style.color = document.getElementById("color").value;
+        result.style.backgroundColor = document.getElementById("bg_color").value;
+        result.style.justifyContent = document.ui.h_align.value;
+        result.style.alignItems = document.ui.v_align.value;
+    }   
+    document.getElementById("btn1").addEventListener("click", function() { fnc1(); }); 
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+    <div class="btn_wrap">
+        <button id="imgFile">이미지로 저장</button>
+    </div>
+    <script>
+    $(document).ready(function(){
+        $("#imgFile").on("click", function(){
+            html2canvas($('#result')[0]).then(function(canvas){
+                var img = document.createElement("a");
+                img.download = "test.png";
+                img.href=canvas.toDataURL();
+                document.body.appendChild(img);
+                img.click();
+            });
+        });
+    });    
+    </script>
+</body>
+</html>
+```
+
+<br><br>
+
+## 14-2. 탁상용 전자계산기 만들기
+
+```comment
+아래 그림과 같이 숫자와 연산자를 누르면, 해당 계산식이 흰 표현식 안에 나타나고, 등호(=)를 누르면, 그 계산 결과가 검은색 상자인 결과란에 출력되며, [AC] 버튼을 누르면, 표현식란과 결과란의 내용이 모두 삭제되고, [OFF] 버튼을 누르면 현재 창이 닫힐 수 있도록 하시오.
+```
+
+![전자계산기](ui2.png)
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>자바스크립트 11</title>
+    <style>
+    * { margin: 0; padding: 0; }
+    input[type="button"] { background-color: #999; border:0; outline:0; 
+        background-color: #666; color:#fff; width: 50px; height: 36px; 
+        line-height: 36px; outline:0; border:0; 
+        border-radius:5px; text-align:center; margin:5px; font-size:18px; 
+        font-weight: bold; box-shadow:1px 1px 5px #000, 1px 1px 4px #111, 1px 1px 3px #222, 1px 1px 2px #333; 
+        text-shadow:-1px -1px 1px #666; cursor:pointer; }
+    input.blue_btn { background-color: #1bbfaf; color:#fff; }
+    input.clear_btn { background-color:deepskyblue; }   
+    input.long_btn { background-color:rgb(179, 11, 11); color:#fff; width: 180px; }   
+    input.green_btn { background-color: lawngreen; 
+        background: linear-gradient(to bottom, #b6e026 0%,#abdc28 100%); } 
+    #expression { display:block; width: 220px; height: 48px; margin-top:10px; margin-left: 5px;
+    font-size:24px; padding-left: 10px; padding-right: 16px; 
+    text-align: right; border-width:3px; border-color:#555; border-style: inset; }
+    #display { display:block; width: 230px; height: 48px; margin-top:10px; 
+        margin-bottom: 10px; margin-left: 5px; background-color:#000; color:#fff; 
+        font-size:24px; padding-left: 10px; padding-right: 10px; line-height: 48px;
+        text-align: right; }
+    #calculator { width: 260px;  margin: 10px auto; border:3px solid #999; 
+    border-radius:16px; background-color:#212226; 
+    background: linear-gradient(to bottom, #212226 0%,#161619 100%); padding: 10px; 
+    box-shadow:1px 1px 1px #222, 2px 2px 1px #333, 3px 3px 1px #444, 4px 4px 1px #555, 5px 5px 1px #666, 6px 6px 1px #777, 7px 7px 1px #888, 8px 8px 1px #999, 9px 9px 1px #888, 10px 10px 1px #777, 11px 11px 1px #666, 12px 12px 1px #555;}
+    @font-face {
+        font-family: 'digital';
+        src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-07@1.0/LAB디지털.woff') format('woff');
+        font-weight: normal;
+        font-style:normal;
+    }
+    #expression, #display { font-family: 'digital'; font-style: italic; }
+    .tit { text-align: center;  padding: 30px; }
+    </style>
+</head>
+<body>
+    <h1 class="tit">전자계산기</h1>
+    <hr>
+    <form id="calculator">
+        <input type="text" id="expression">
+        <div id="display"></div>
+        <hr>
+        <div class="btn_area">
+            <input type="button" value="7" onclick="compute('7')" />
+            <input type="button" value="8" onclick="compute('8')" />
+            <input type="button" value="9" onclick="compute('9')" />
+            <input type="button" value="AC" id="ac" class="clear_btn" />
+            <input type="button" value="4" onclick="compute('4')" />
+            <input type="button" value="5" onclick="compute('5')" />
+            <input type="button" value="6" onclick="compute('6')" />
+            <input type="button" value="/" onclick="compute('/')" class="blue_btn" />
+            <input type="button" value="1" onclick="compute('1')" />
+            <input type="button" value="2" onclick="compute('2')" />
+            <input type="button" value="3" onclick="compute('3')" />
+            <input type="button" value="*" onclick="compute('*')" class="blue_btn" />
+            <input type="button" value="." onclick="compute('.')" />
+            <input type="button" value="0" onclick="compute('0')" />
+            <input type="button" value="+" onclick="compute('+')" class="blue_btn" />
+            <input type="button" value="-" onclick="compute('-')" class="blue_btn" />
+        </div>
+        <input type="button" value="=" onclick="result()" id="equal" class="long_btn" />
+        <input type="button" value="OFF" onclick="off()" id="onoff" class="green_btn"/>
+    </form>
+    <script>
+        var ac = document.getElementById("ac");
+        var expression = document.getElementById("expression");
+        var display = document.getElementById("display");
+        function compute(ch){ //문자열 결합
+            expression.value = expression.value + ch;
+        }    
+        var ac = document.getElementById("ac");
+        ac.addEventListener("click", function(){
+            expression.value=""; 
+            display.innerHTML=""; 
+        });
+        function clear() { //원래내용 다시 초기화
+            expression.value=""; 
+            display.innerHTML=""; 
+        }
+        var result = function(){ //문자열을 계산식으로 변환
+            var data = eval(expression.value);
+            display.innerHTML = data;
+        }
+        var onoff = document.getElementById("onoff");
+        var off = function(){ self.close(); } //현재 창이 닫힘
+        </script>
+</body>
+</html>
+```
+
+<br><br>
+
+## 14-3. 회원가입 및 로그인 창 만들기
+
+![로그인창](ui3.png)
+
+```comment
+위 로그인 창에서 [회원가입] 버튼을 누르면 아래 화면과 같이 회원가입 창으로 변경되고, 아래 회원가입 창에서 [로그인] 버튼을 누르면 다시 위 로그인 창으로 변경되도록 구현하되, 입력 데이터에 대한 유효성 검증이 가능하도록 하시오.
+```
+
+![회원가입창](ui4.png)
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>회원가입</title>
+    <style>
+@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css");
+@import url("https://fonts.googleapis.com/css2?family=Nanum+Gothic&family=Nanum+Pen+Script&family=Noto+Sans+KR:wght@100..900&family=Noto+Serif+KR");
+* {  box-sizing: border-box; }
+body {  font-family: "Montserrat", sans-serif;  margin: 0;  padding: 0; }
+.wrapper {  width: 100%;  height: 100vh;  display: flex;  justify-content: center;
+  align-items: center;  background: #ebecf0;  overflow: hidden; }
+.container {  border-radius: 10px;  box-shadow: -5px -5px 10px #fff, 5px 5px 10px #babebc;
+  position: absolute;  width: 768px;  min-height: 480px;  overflow: hidden; }
+form {  background: #ebecf0;  display: flex;  flex-direction: column;
+  padding: 0 50px;  height: 100%;  justify-content: center;  align-items: center; }
+form input {  background: #eee;  padding: 16px;  margin: 8px 0;  width: 85%;
+  border: 0;  outline: none;  border-radius: 20px;
+  box-shadow: inset 7px 2px 10px #babebc, inset -5px -5px 12px #fff; }
+button {  border-radius: 20px;  border: none;  outline: none;  font-size: 12px;
+  font-weight: bold;  padding: 15px 45px;  margin: 14px;  letter-spacing: 1px;
+  text-transform: uppercase;  cursor: pointer;  transition: transform 80ms ease-in; }
+.form_btn {  box-shadow: -5px -5px 10px #fff, 5px 5px 8px #babebc; }
+.form_btn:active { box-shadow: inset 1px 1px 2px #babebc, inset -1px -1px 2px #fff;}
+.overlay_btn {  background-color: #ff4b2b;  color: #fff;
+  box-shadow: -5px -5px 10px #ff6b3f, 5px 5px 8px #bf4b2b; }
+.sign-in-container {  position: absolute;  left: 0;  width: 50%;
+  height: 100%;  transition: all 0.5s; }
+.sign-up-container { position: absolute;  left: 0;  width: 50%;  height: 100%;
+  opacity: 0;  transition: all 0.5s; }
+.overlay-left {  display: flex;  flex-direction: column;  padding: 0 50px;  
+  justify-content: center;  align-items: center;  position: absolute;  right: 0;  
+  width: 50%;  height: 100%; opacity: 0;  background-color: #ff4b2b;  color: #fff;
+  transition: all 0.5s;
+}
+.overlay-right {  display: flex;  flex-direction: column;  padding: 0 50px;
+  justify-content: center;  align-items: center;  position: absolute;
+  right: 0;  width: 50%;  height: 100%;  background-color: #ff4b2b;
+  color: #fff;  transition: all 0.5s; }
+.container.right-panel-active .sign-in-container {  transform: translateX(100%);  opacity: 0; }
+.container.right-panel-active .sign-up-container {  transform: translateX(100%);  opacity: 1;
+  z-index: 2; }
+.container.right-panel-active .overlay-right { transform: translateX(-100%);  opacity: 0;}
+.container.right-panel-active .overlay-left {   transform: translateX(-100%);
+  opacity: 1;  z-index: 2; }
+.social-links {  margin: 20px 0; }
+form h1 {  font-weight: bold;  margin: 0;  color: #000; }
+
+p {  font-size: 16px;  font-weight: bold;  letter-spacing: 0.5px;  margin: 20px 0 30px; }
+span {  font-size: 12px;  color: #000;  letter-spacing: 0.5px;  margin-bottom: 10px; }
+.social-links div {  width: 40px;  height: 40px;  display: inline-flex;
+  justify-content: center;  align-items: center;  margin: 0 5px;
+  border-radius: 50%;  box-shadow: -5px -5px 10px #fff, 5px 5px 8px #babebc;
+  cursor: pointer;
+}
+.social-links a {  color: #000; }
+.social-links div:active {  box-shadow: inset 1px 1px 2px #babebc, inset -1px -1px 2px #fff; }    
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <div class="container">
+          <div class="sign-up-container">
+            <form>
+              <h1>회원 가입</h1>
+              <div class="social-links">
+                <div>
+                  <a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+                </div>
+                <div>
+                  <a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+                </div>
+                <div>
+                  <a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
+                </div>
+              </div>
+              <span>이메일과 비밀번호를 입력하고, 회원가입하시기 바랍니다.</span>
+              <input type="text" placeholder="Name">
+              <input type="email" placeholder="Email">
+              <input type="password" placeholder="Password">
+              <button class="form_btn">회원가입</button>
+            </form>
+          </div>
+          <div class="sign-in-container">
+            <form>
+              <h1>Sign In</h1>
+              <div class="social-links">
+                <div>
+                  <a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+                </div>
+                <div>
+                  <a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+                </div>
+                <div>
+                  <a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
+                </div>
+              </div>
+              <span>or use your account</span>
+              <input type="email" placeholder="Email">
+              <input type="password" placeholder="Password">
+              <button class="form_btn">Sign In</button>
+            </form>
+          </div>
+          <div class="overlay-container">
+            <div class="overlay-left">
+              <h1>로그인하기</h1>
+              <p>로그인하고, 회원 혜택을 즐겨보세요~!</p>
+              <button id="signIn" class="overlay_btn">로그인</button>
+            </div>
+            <div class="overlay-right">
+              <h1>회원가입하기</h1>
+              <p>회원가입하고, 다같이 여행을 같이 가자~! 가산투어~!</p>
+              <button id="signUp" class="overlay_btn">회원가입</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <script>
+        const signUpBtn = document.getElementById("signUp");
+        const signInBtn = document.getElementById("signIn");
+        const container = document.querySelector(".container");
+
+        signUpBtn.addEventListener("click", () => {
+        container.classList.add("right-panel-active");
+        });
+        signInBtn.addEventListener("click", () => {
+        container.classList.remove("right-panel-active");
+        });  
+      </script>
+</body>
+</html>
+```
+
+<br><br>
+
+## 14-4. 디지털 시계 만들기
+
+![디지털시계만들기](ui5.png)
+
+```comment
+위 그림과 같이 실제 작동되는 듯한 디지털 벽 시계를 작성하되, 하단부에는 날짜와 시간이 표시되도록 구현하시오.
+```
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>달력과 디지털 시계</title>
+    <style>
+    * { margin: 0; padding: 0; }
+    body { width:100%; overflow-x:hidden; }
+    .wrap { width:100%; }
+    .page { clear:both; width: 100vw; height:100vh; box-sizing: border-box; }
+    #page1 { background-color: #f1f1f1;}
+    #page3 { background-color: lightcyan; }
+    .page_title { text-align: center; padding-top: 2rem; padding-top: 0.5rem; }
+    .frame { position:fixed; bottom:0; left:0; width:100%; height:120px; line-height: 120px; 
+    background-color:rgba(255,127,1,0.65); color:#fff;  font-size:68px; 
+    text-shadow:1px 1px 0px #111, 2px 2px 0px #222, 3px 3px 0px #333; }    
+    #cal { float:left; padding-left: 100px; }
+    #clk { float:right; padding-right: 100px; }
+    @font-face {
+        font-family: 'digital';
+        src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-07@1.0/LAB디지털.woff') format('woff');
+        font-weight: normal;
+        font-style:normal;
+    }
+    .wood_frame { width: 632px; margin: 20px auto; background-image:url(wood.jpg); 
+    background-size: cover; padding: 50px; border-radius:40px; 
+    box-shadow:1px 1px 2px #777, 3px 3px 2px #888, 5px 5px 2px #999, 7px 7px 2px #aaa, 9px 9px 2px #bbb; }
+    #wood_clock { font-family: 'digital'; font-style: italic; width: 600px;
+    text-align:left; text-indent:140px; background-color:#ececec;
+    font-size :90px; line-height: 180px; border-radius:15px;
+    border:16px groove #dcdcdc; }
+    </style>
+</head>
+<body>
+    <div class="wrap" style="min-height:300vh;">
+        <section class="page" id="page1">
+            <h2 class="page_title">페이지1</h2>
+            <div class="wood_frame">
+                <div id="wood_clock">
+                    16:06:27
+                </div>
+            </div>    
+        </section>
+        <section class="page" id="page2">
+            <h2 class="page_title">페이지2</h2>
+        </section>
+        <section class="page" id="page3">
+            <h2 class="page_title">페이지3</h2>
+        </section>
+    </div>
+    <div class="frame">
+        <div id="cal">2024-04-25</div>
+        <div id="clk">16:06:27</div>
+    </div>
+    <script>
+    var cal = document.getElementById("cal");
+    var clk = document.getElementById("clk");
+    var wood = document.getElementById("wood_clock");
+    var today;
+
+    calendar();
+    clock();    
+    var intv = setInterval(function() { 
+        calendar();
+        clock();
+    }, 1000);
+    function calendar() {
+        today = new Date();
+        var year = today.getFullYear();
+        var month = today.getMonth() + 1;
+        if(month<10) {
+            month = "0"+month;
+        }
+        var day = today.getDate();
+        if(day<10){
+            day = "0"+ day;
+        }
+        var w = ["일","월","화","수","목","금","토"];
+        var wk = today.getDay();
+        cal.innerHTML = year + "-" + month + "-" + day + "("+w[wk]+")";
+    }
+    
+    function clock() {
+        today = new Date();
+        var hour = today.getHours();
+        if(hour<10) hour = "0" + hour;
+        var minute = today.getMinutes();
+        if(minute<10) minute = "0" + minute;
+        var second = today.getSeconds();
+        if(second<10) second = "0" + second;
+        clk.innerHTML = hour + ":" + minute + ":" + second;
+        wood.innerHTML = hour + ":" + minute + ":" + second;
+    }    
+    </script>
+</body>
+</html>
+```
+
+<br><br>
+
+## 14-5. 아날로그 시계 만들기
+
+![아날로그벽시계](ui6.png)
+
+```comment
+위 그림과 같이 시계추, 초침, 분침, 시침이 실제 동작되도록 아날로그 벽시계를 작성하시오.
+```
+
+```javascript
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>아날로그 시계</title>
+    <style>
+    * { margin: 0; padding: 0; }
+
+    #clock { width: 274px; height:500px; margin:50px auto; position:relative; }
+    .clock_fr { position:relative; }    
+    #clock_bg, #clock_base, #second, #minute, #hour, #clock_weight { position:absolute; left:0; top:0; }
+    #clock_base, #second, #minute, #hour { top:65px; }
+    #clock_weight { top:328px; left:103px; transition:1s; transform-origin:center -4px;}
+    </style>
+</head>
+<body>
+    <div id="clock">
+        <img src="clock_bg.png" alt="시계배경" id="clock_bg">
+        <div class="clock_fr">
+            <img src="clock_base.png" alt="시계틀" id="clock_base">
+            <img src="second.png" alt="초침" id="second">
+            <img src="minute.png" alt="분침" id="minute">
+            <img src="hour.png" alt="시침" id="hour">
+        </div>
+        <img src="clock_weight.png" alt="시계추" id="clock_weight">
+    </div>   
+    <script>
+    var second = document.getElementById("second");  //초침 선택
+    var minute = document.getElementById("minute");  //분침 선택
+    var hour = document.getElementById("hour");
+    function clock(){
+        var time = new Date(); //날짜/시간 객체 생성
+        var hh = time.getHours(); //시 추출
+        var mm = time.getMinutes(); //분 추출
+        var ss = time.getSeconds(); //초 추출
+        if(hh>12) { hh=hh-12; } //시에 대하여 12시간제로 변경
+        hh= hh/12*360; //시 각도 계산
+        mm= mm/60*360; //분 각도 계산
+        ss= ss/60*360; //초 각도 계산
+        second.style.transform = "rotate("+ss+"deg)"; //시침에 대한 각도 적용
+        minute.style.transform = "rotate("+mm+"deg)"; //분침에 대한 각도 적용
+        hour.style.transform = "rotate("+hh+"deg)"; //초침에 대한 각도 적용
+    }
+    clock();
+    setInterval(function(){ clock(); }, 1000); //1초 마다 갱신
+    var cw = document.getElementById("clock_weight"); //시계추 선택
+    var sw=1;
+    setInterval(function(){  //시계추 왕복
+        if(sw==1){
+            cw.style.transform = "rotate(45deg)";
+            sw=sw*-1;
+        } else {    
+            cw.style.transform = "rotate(-45deg)"; 
+            sw=sw*-1;
+        }    
+    }, 1000);      
+    </script>
+</body>
+</html>
+```
+
 

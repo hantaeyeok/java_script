@@ -3,21 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DOM 객체의 제어</title>
+    <title>test10</title>
     <style>
     * { margin: 0; padding: 0; }
     body { width:100%; overflow-x:hidden; color:#000; }
     .title { padding-top: 2rem; text-align: center; padding-bottom: 0.5rem; }
     .table { width: 960px; margin: 10px auto; }
     
-    #btn1, #imgFile { display:block; width: 150px; text-align: center; line-height: 36px; 
-    margin: 8px auto; clear:both; font-size:16px; font-weight:bold; }
-    .wrap { clear:both; width: 100%; height:auto; min-height:100px; margin-top: 30px; 
-        display: flex; justify-content: center;   align-items: center;  }
-    #result { width:200px; height:400px; background-color:yellow; color:red; 
-    font-size:20px; text-align:right; font-weight:bold; 
-    border:3px solid #000;  display: flex; justify-content:right;  align-items:center; }
-    .btn_wrap { clear:both; width: 960px; margin:0 auto; padding-top: 30px; padding-bottom: 100px; }
+    
+    .wrap { clear:both; width: 100%; height:auto; min-height:100px; margin-top: 30px; display: flex; justify-content: center;  align-items: center;  }
+    #result { width:200px; height:400px; background-color:yellow; color:red; font-size:20px; text-align:right; font-weight:bold; border:3px solid #000;  
+        display: flex; justify-content:right;  align-items:center; }
+    #btn1{ display:block; width: 150px; text-align: center; line-height: 36px; margin: 8px auto; clear:both; font-size:16px; font-weight:bold; }
     </style>
 </head>
 <body>
@@ -37,9 +34,9 @@
                     <td><input type="text" size="9" name="font_size" id="font_size" value="20">px</td>
                     <th>굵기 : </th>
                     <td>보통 
-                        <input type="radio" name="font_weight" id="font_weight1" value="normal"> &nbsp; &nbsp;
+                        <input type="radio" name="font_weight" id="font_weight1" value="normal" checked> &nbsp; &nbsp;
                         굵게 
-                        <input type="radio" name="font_weight" id="font_weight2" value="bold" checked>
+                        <input type="radio" name="font_weight" id="font_weight2" value="bold" >
                     </td>
                 </tr>
                 <tr>
@@ -53,9 +50,9 @@
                     <td colspan="3">왼쪽 
                         <input type="radio" name="h_align" id="h_align1" value="left"> &nbsp; &nbsp;
                         가운데 
-                        <input type="radio" name="h_align" id="h_align2" value="center"> &nbsp; &nbsp;
+                        <input type="radio" name="h_align" id="h_align2" value="center" checked> &nbsp; &nbsp;
                         오른쪽 
-                        <input type="radio" name="h_align" id="h_align3" value="right" checked>
+                        <input type="radio" name="h_align" id="h_align3" value="right" >
                     </td>
                 </tr>
                 <tr>
@@ -101,23 +98,6 @@
     }   
     document.getElementById("btn1").addEventListener("click", function() { fnc1(); }); 
     </script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
-    <div class="btn_wrap">
-        <button id="imgFile">이미지로 저장</button>
-    </div>
-    <script>
-    $(document).ready(function(){
-        $("#imgFile").on("click", function(){
-            html2canvas($('#result')[0]).then(function(canvas){
-                var img = document.createElement("a");
-                img.download = "test.png";
-                img.href=canvas.toDataURL();
-                document.body.appendChild(img);
-                img.click();
-            });
-        });
-    });    
-    </script>
+
 </body>
 </html>
